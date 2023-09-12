@@ -1,14 +1,11 @@
-# Build with: docker build -t jekyll-toolbox -f Dockerfile.dev .
-# Use the image to generate your jekyll project. Or run interactively to run other jekyll commands. This is used for development only. Build a custom production image when needed.
-# Example: docker run --rm -it -v $PWD:/app jekyll-toolbox jekyll new ./
-# Example: docker run --rm -it -v $PWD:/app -p 4000:4000 jekyll-toolbox
+# Use debian based image for Jekyll to run properly.
 FROM ruby:3.2.2-bookworm
 
 # Add required system packages.
 #RUN apk add --no-cache build-base tzdata nodejs yarn sqlite-dev postgresql-dev mysql-dev git nano npm make
 RUN apt-get update && apt-get install -y nano git make npm && apt-get clean
 
-# Install global Node packages (npm install -g). These will be baked into this image and available at all times.
+# Install global Node packages (npm install -g). These will be baked into this image and available at all times. Requires new image build when you want to update a package. Otherwise, use local installs.
 #RUN npm install -g @mermaid-js/mermaid-cli
 
 # Add user and configure directory.
