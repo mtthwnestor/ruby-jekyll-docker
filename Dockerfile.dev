@@ -19,5 +19,6 @@ RUN gem install jekyll:4.3.2 bundler:2.4.18
 
 # Install local Node packages (npm install). (These would be put into /app and therefore not persisted if we mount our app there during development)
 #RUN npm install @mermaid-js/mermaid-cli
+ENV PATH="/app/node_modules/.bin:$PATH"
 
 CMD ["/bin/bash"]
