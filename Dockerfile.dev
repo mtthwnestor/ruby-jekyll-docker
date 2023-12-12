@@ -9,13 +9,13 @@ RUN apt-get update && apt-get install -y nano git make npm && apt-get clean
 #RUN npm install -g @mermaid-js/mermaid-cli
 
 # Add user and configure directory.
-RUN adduser --disabled-password jekyll
-USER jekyll
+#RUN adduser --disabled-password jekyll
+#USER jekyll
 WORKDIR /app
 
 # Install gems.
-ENV GEM_HOME=/home/jekyll/gems PATH="/home/jekyll/gems/bin:$PATH"
-RUN gem install jekyll:4.3.2 bundler:2.4.18
+#ENV GEM_HOME=/home/jekyll/gems PATH="/home/jekyll/gems/bin:$PATH"
+RUN gem install jekyll:4.3.2 bundler:2.4.22
 
 # Install local Node packages (npm install). (These would be put into /app and therefore not persisted if we mount our app there during development)
 #RUN npm install @mermaid-js/mermaid-cli

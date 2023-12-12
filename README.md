@@ -24,8 +24,14 @@ Or run interactively to run other commands.
 docker run --rm -it -v $PWD:/app -p 4000:4000 jekyll-toolbox
 ```
 
-If you want to include a local gem cache to save time and bandwith between runs, you can set the `GEM_HOME` variable to a folder that you will mount and persist locally. Keep in mind that this will overwrite the built-in `GEM_HOME`, so bundler might need to update itself if the version does not match:
+If you want to include a local gem cache to save time and bandwidth between runs, you can set the `GEM_HOME` variable to a folder that you will mount and persist locally. Keep in mind that this will overwrite the built-in `GEM_HOME`, so `bundler` might need to update itself if the version does not match:
 
 ```bash
 docker run --rm -it -v $PWD:/app -e GEM_HOME=/app/.gems-cache mtthwnestor/jekyll-toolbox bundle install
+```
+
+The container will run as root by default. It is recommended to set your user and group ID at runtime with `--user $(id -u):$(id -g)`:
+
+```bash
+docker run --rm -it -v $PWD:/app -e GEM_HOME=/app/.gems-cache --user $(id -u):$(id -g) mtthwnestor/jekyll-toolbox bundle install
 ```
